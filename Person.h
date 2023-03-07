@@ -1,10 +1,10 @@
 #pragma once
 #include <iostream>
 #include <string>
+
 using namespace std;
 
-class Person
-{
+class Person {
 public:
     Person(string name, int amount) : name(name), amount(amount) {}
     bool operator>(const Person &g);
@@ -33,103 +33,83 @@ private:
     int amount;
 };
 
-bool Person::operator>(const Person &g)
-{
+bool Person::operator>(const Person &g) {
     return amount > g.amount;
 }
 
-bool Person::operator==(const Person &g)
-{
+bool Person::operator==(const Person &g) {
     return amount == g.amount;
 }
 
-bool Person::operator>=(const Person &g)
-{
+bool Person::operator>=(const Person &g) {
     return amount >= g.amount;
 }
 
-bool Person::operator<(const Person &g)
-{
+bool Person::operator<(const Person &g) {
     return amount < g.amount;
 }
 
-bool Person::operator<=(const Person &g)
-{
+bool Person::operator<=(const Person &g) {
     return amount <= g.amount;
 }
 
-bool Person::operator!=(const Person &g)
-{
+bool Person::operator!=(const Person &g) {
     return amount != g.amount;
 }
 
-bool Person::operator>(const int g)
-{
+bool Person::operator>(const int g) {
     return amount > g;
 }
 
-bool Person::operator>=(const int g)
-{
+bool Person::operator>=(const int g) {
     return amount >= g;
 }
 
-bool Person::operator<(const int g)
-{
+bool Person::operator<(const int g) {
     return amount < g;
 }
 
-bool Person::operator<=(const int g)
-{
+bool Person::operator<=(const int g) {
     return amount <= g;
 }
 
-bool Person::operator!=(const int g)
-{
+bool Person::operator!=(const int g) {
     return amount != g;
 }
 
-bool Person::operator==(const int g)
-{
+bool Person::operator==(const int g) {
     return amount == g;
 }
 
-bool operator>(const int i, const Person g)
-{
+bool operator>(const int i, const Person g) {
     return i > g.amount;
 }
 
-bool operator>=(const int i, const Person g)
-{
+bool operator>=(const int i, const Person g) {
     return i >= g.amount;
 }
 
-bool operator<(const int i, const Person g)
-{
+bool operator<(const int i, const Person g) {
     return i < g.amount;
 }
 
-bool operator<=(const int i, const Person g)
-{
+bool operator<=(const int i, const Person g) {
     return i <= g.amount;
 }
 
-bool operator==(const int i, const Person g)
-{
+bool operator==(const int i, const Person g) {
     return i == g.amount;
 }
 
-bool operator!=(const int i, const Person g)
-{
+bool operator!=(const int i, const Person g) {
     return i != g.amount;
 }
 
-int Person::getAmount() const
-{
+int Person::getAmount() const {
     return amount;
 }
 
-ostream &operator<<(ostream &out, const Person &g)
-{
+ostream &operator<<(ostream &out, const Person &g) {
     out << g.name << ": " << g.amount;
     return out;
 }

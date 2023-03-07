@@ -2,14 +2,13 @@
 #include <iostream>
 #include <string>
 #include "Person.h"
+
 using namespace std;
 
 template <typename Type>
-class Queue
-{
+class Queue {
 private:
-    struct Node
-    {
+    struct Node {
         Type data;
         Node *next;
         Node(Type data, Node *next = nullptr) : data(data), next(next) {}
@@ -19,87 +18,72 @@ private:
 
 public:
     Queue() : front(nullptr), back(nullptr) {}
-    Queue(const Queue<Type> &q) : front(nullptr), back(nullptr)
-    {
+    Queue(const Queue<Type> &q) : front(nullptr), back(nullptr) {
         Node *current = q.front;
-        while (current != nullptr)
-        {
+        while (current != nullptr) {
             enqueue(current->data);
             current = current->next;
         }
     }
-    Queue<Type> &operator=(const Queue<Type> &q)
-    {
-        if (this != &q)
-        {
+
+    Queue<Type> &operator=(const Queue<Type> &q) {
+        if (this != &q) {
             clear();
             Node *current = q.front;
-            while (current != nullptr)
-            {
+            while (current != nullptr) {
                 enqueue(current->data);
                 current = current->next;
             }
         }
         return *this;
     }
-    ~Queue()
-    {
+
+    ~Queue() {
         clear();
     }
-    void enqueue(Type data)
-    {
+
+    void enqueue(Type data) {
         Node *newNode = new Node(data);
-        if (isEmpty())
-        {
+        if (isEmpty()) {
             front = newNode;
             back = newNode;
-        }
-        else
-        {
+        } else {
             back->next = newNode;
             back = newNode;
         }
     }
-    Type peek()
-    {
-        if (!isEmpty())
-        {
+
+    Type peek() {
+        if (!isEmpty()) {
             return front->data;
-        }
-        else
-        {
+        } else {
             throw "Queue is empty";
         }
     }
-    void dequeue()
-    {
-        if (!isEmpty())
-        {
+
+    void dequeue() {
+        if (!isEmpty()) {
             Node *temp = front;
             front = front->next;
             delete temp;
-        }
-        else
-        {
-            throw "Queue is empty";
+        } else {
+            throw runtime_error("Queue is empty");
         }
     }
-    bool isEmpty()
-    {
+
+    bool isEmpty() {
         return front == nullptr;
     }
-    void clear()
-    {
-        while (!isEmpty())
-        {
+
+    void clear() {
+        while (!isEmpty()) {
             dequeue();
         }
     }
-    friend ostream &operator<<(ostream &out, const Queue<Type> &q)
-    {
+
+    friend ostream &operator<<(ostream &out, const Queue<Type> &q) {
         Node *current = q.front;
-        while (current != nullptr)
-        {
+        while (current != nullptr) {
             out << current->data << " ";
             current = current->next;
         }

@@ -16,8 +16,7 @@ void testCandyGuessMethod2();
 template <class Type>
 bool test(string, Type, Type);
 
-int main()
-{
+int main() {
     testQueue();
     testConstructors();
     testCandyGuessMethod1();
@@ -29,8 +28,7 @@ int main()
     numberOfCandies represents the number of Candies in the Jar.
     guessList contains the names and guesses of each of the people playing the game.
 ********** TODO ********** TODO ********** TODO ********** TODO ********** TODO*/
-Queue<Person> findWinners(int numberOfCandies, Queue<Person> guessList)
-{
+Queue<Person> findWinners(int numberOfCandies, Queue<Person> guessList) {
     Queue<Person> winners;
     int closest_diff = INT_MAX;
     while (!guessList.isEmpty())
@@ -40,19 +38,16 @@ Queue<Person> findWinners(int numberOfCandies, Queue<Person> guessList)
             Person guess = guessList.peek();
             guessList.dequeue();
             int diff = abs(guess.getAmount() - numberOfCandies);
-            if (diff < closest_diff)
-            {
+            if (diff < closest_diff) {
                 closest_diff = diff;
                 winners.clear();
                 winners.enqueue(guess);
             }
-            else if (diff == closest_diff)
-            {
+            else if (diff == closest_diff) {
                 winners.enqueue(guess);
             }
         }
-        catch (const char *msg)
-        {
+        catch (const char *msg) {
             cout << "Error caught and dumped." << endl;
             cerr << "Exception caught: " << msg << endl;
         }
@@ -60,11 +55,9 @@ Queue<Person> findWinners(int numberOfCandies, Queue<Person> guessList)
     return winners;
 }
 
-void testQueue()
-{
+void testQueue() {
     Queue<int> one;
-    for (int i = 0; i < 5; i++)
-    {
+    for (int i = 0; i < 5; i++) {
         one.enqueue(i);
     }
 
@@ -75,21 +68,18 @@ void testQueue()
 
     test("03 Clear", one.isEmpty(), true);
     bool check = true;
-    try
-    {
+    try {
         one.dequeue();
     }
-    catch (exception &e)
-    {
+    catch (exception &e) {
         check = false;
     }
     test("04 Removing from empty queue", check, false);
 }
-void testConstructors()
-{
+
+void testConstructors() {
     Queue<int> one;
-    for (int i = 0; i < 5; i++)
-    {
+    for (int i = 0; i < 5; i++) {
         one.enqueue(i);
     }
     Queue<int> two = one;
@@ -115,13 +105,12 @@ void testConstructors()
     ss2 << two;
     test("07 Deep Copy operator=: ", ss1.str() == ss2.str(), false);
 }
-void testCandyGuessMethod1()
-{
+
+void testCandyGuessMethod1() {
     Queue<Person> guesses;
     string names[] = {"Sarah", "Kim", "Bob", "Brook", "Zed", "Brock", "Ted"};
     int gs[] = {105, 96, 95, 93, 106, 104, 105};
-    for (int i = 0; i < 7; i++)
-    {
+    for (int i = 0; i < 7; i++) {
         unique_ptr<Person> g = make_unique<Person>(Person(names[i], gs[i]));
         guesses.enqueue(*g);
     }
@@ -140,13 +129,11 @@ void testCandyGuessMethod1()
     test("08 Candy Guess: ", ss1.str() == ss2.str(), true);
 }
 
-void testCandyGuessMethod2()
-{
+void testCandyGuessMethod2() {
     Queue<Person> guesses;
     string names[] = {"Sarah", "Kim", "Bob", "Brook", "Zed", "Brock", "Ted", "Ana"};
     int gs[] = {40, 60, 45, 44, 55, 48, 52, 48};
-    for (int i = 0; i < 8; i++)
-    {
+    for (int i = 0; i < 8; i++) {
         unique_ptr<Person> g = make_unique<Person>(Person(names[i], gs[i]));
         guesses.enqueue(*g);
     }
@@ -166,15 +153,12 @@ void testCandyGuessMethod2()
 }
 
 template <class Type>
-bool test(string name, Type is, Type shouldBe)
-{
-    if (is == shouldBe)
-    {
+bool test(string name, Type is, Type shouldBe) {
+    if (is == shouldBe) {
         cout << "Passed: " << name << endl;
         return true;
     }
-    else
-    {
+    else {
         cout << "Failed: " << name << " was " << is << " should be: " << shouldBe << endl;
     }
     return false;
